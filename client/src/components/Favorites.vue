@@ -15,6 +15,7 @@
 import axios from 'axios';
 
 export default {
+name:'Favorites',
   data() {
     return {
       favoriteTracks: [] // Массив для хранения избранных треков

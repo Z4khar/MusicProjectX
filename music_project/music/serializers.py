@@ -14,6 +14,7 @@ class PlaylistSerializer(serializers.ModelSerializer):
         fields = '__all__'  # Используем все поля модели Playlist
 
 class FavoriteTrackSerializer(serializers.ModelSerializer):  # Новый сериализатор для FavoriteTrack
+   
     class Meta:
         model = FavoriteTrack  # Указываем модель FavoriteTrack
         fields = '__all__'  # Используем все поля модели FavoriteTrack

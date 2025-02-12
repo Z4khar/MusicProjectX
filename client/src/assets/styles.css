@@ -23,13 +23,7 @@ header {
     width: 100%; /* Ширина на всю страницу */
 }
 
-footer {
-    background-color: #ffcc00; /* Желтый цвет футера */
-    padding: 10px; /* Отступы */
-    text-align: center; /* Центрирование текста */
-    width: 102%; /* Ширина на всю страницу */
-    margin-top: 170px; /* Отступ сверху для разделения с контентом */
-}
+
 
 .track-container {
     display: flex; /* Используем flexbox для отображения треков */
