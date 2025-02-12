@@ -1,5 +1,8 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import './assets/styles.css'; // Импортируйте стили
+import { createApp } from 'vue'; // Импортируем функцию для создания приложения Vue
+import App from './App.vue'; // Импортируем корневой компонент приложения
+import router from './router'; // Импортируем роутер, который мы создали ранее
 
-createApp(App).mount('#app');
+
+createApp(App)
+  .use(router) 
+  .mount('#app'); 

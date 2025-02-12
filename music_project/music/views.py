@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Track, Playlist
-from .serializers import TrackSerializer, PlaylistSerializer
+from .models import Track, Playlist, FavoriteTrack
+from .serializers import TrackSerializer, PlaylistSerializer, FavoriteTrackSerializer
 
 class TrackViewSet(viewsets.ModelViewSet):
     queryset = Track.objects.all()  # Получаем все треки из базы данных
@@ -9,3 +9,7 @@ class TrackViewSet(viewsets.ModelViewSet):
 class PlaylistViewSet(viewsets.ModelViewSet):
     queryset = Playlist.objects.all()  # Получаем все плейлисты из базы данных
     serializer_class = PlaylistSerializer  # Указываем сериализатор для плейлистов
+
+class FavoriteTrackViewSet(viewsets.ModelViewSet):  # Новый класс для работы с избранными треками
+    queryset = FavoriteTrack.objects.all()  # Получаем все избранные треки из базы данных
+    serializer_class = FavoriteTrackSerializer  # Указываем сериализатор для избранных треков 

@@ -5,6 +5,7 @@
       <div class="track" v-for="track in tracks" :key="track.id">
         <img :src="track.cover_image" @click="playTrack(track.audio_file)" alt="Cover" />
         <p>{{ track.title }} - {{ track.artist }}</p>
+        <button @click="addToFavorites(track.id)">Добавить в избранное</button> <!-- Кнопка для добавления в избранное -->
       </div>
     </div>
   </div>
@@ -34,41 +35,20 @@ export default {
     },
     playTrack(audioFile) {
       this.$emit('play', audioFile); // Передаем путь к аудиофайлу в родительский компонент
+    },
+    addToFavorites(trackId) {
+      const userId = 1; // Здесь нужно получить ID текущего пользователя
+      axios.post('http://127.0.0.1:8000/api/favorite-tracks/', {
+        user: userId,
+        track: trackId
+      })
+      .then(response => {
+        console.log('Трек добавлен в избранное:', response.data);
+      })
+      .catch(error => {
+        console.error('Ошибка при добавлении в избранное:', error);
+      });
     }
   }
 };
 </script>
-
-<style>
-.track-container {
-  display: flex; /* Используем flexbox для отображения треков */
-  flex-wrap: wrap; /* Оборачиваем элементы на новой строке */
-  justify-content: space-between; /* Распределяем треки равномерно */
-  gap: 20px; /* Отступы между элементами */
-}
-
-.track {
-  background-color: #fff; /* Белый цвет фона для обложки */
-  border-radius: 15px; /* Скругленные углы */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень */
-  overflow: hidden; /* Скроем элементы, выходящие за границы */
-  text-align: center; /* Центрирование текста внутри трека */
-  cursor: pointer; /* Курсор в виде указателя */
-  transition: transform 0.2s; /* Плавный переход для эффекта */
-  flex: 1 1 calc(25% - 20px); /* 4 трека в ряд с учетом отступов */
-}
-
-.track:hover {
-  transform: scale(1.05); /* Увеличение при наведении */
-}
-
-.track img {
-  width: 100%; /* Ширина обложки 100% */
-  border-radius: 15px 15px 0 0; /* Скругление только верхних углов */
-}
-
-.track p {
-  margin: 10px 0; /* Отступы для текста */
-  color: #333; /* Цвет текста */
-}
-</style>

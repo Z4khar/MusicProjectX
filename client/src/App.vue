@@ -1,49 +1,38 @@
 <template>
   <div id="app">
     <header>
-      <h1>Музыкальная библиотека</h1>
+      <h1>Музыкальная библиотека</h1> <!-- Заголовок приложения -->
+      <nav> <!-- Начало блока навигации -->
+        <router-link to="/">Главная</router-link> <!-- Ссылка на главную страницу -->
+        <router-link to="/favorites">Избранные</router-link> <!-- Ссылка на страницу избранных треков -->
+      </nav> <!-- Конец блока навигации -->
     </header>
 
- 
-
-
-
-    <Vinyl /> <!-- Анимация виниловой пластинки -->
-    <AnimatedText /> <!-- Анимированный текст -->
     <Player :currentTrack="currentTrack" /> <!-- Плеер под заголовком -->
-    <Track @play="currentTrack = $event" />
-    
-
-    
+    <router-view @play="currentTrack = $event" /> <!-- Используем router-view для отображения компонентов на основе маршрута -->
+    <Track />
     <footer>
-      <p>© 2023 Музыкальная библиотека</p>
+      <p>© 2023 Музыкальная библиотека</p> <!-- Футер приложения -->
     </footer>
   </div>
 </template>
 
 <script>
-
-import AnimatedText from './components/AnimatedText.vue';
-import Track from './components/Track.vue'; 
-import Player from './components/Player.vue'; 
-import Vinyl from './components/Vinyl.vue'; // Импортируем компонент виниловой пластинки
-
-
+import Player from './components/Player.vue'; // Импортируем компонент Player
+import Track from './components/Track.vue';
 export default {
   components: {
-    Track,
-    Player,
-    AnimatedText,
-    Vinyl // Добавляем компонент Vinyl
+    Player,  
+    Track
   },
   data() {
     return {
-      currentTrack: '' // Текущий трек для воспроизведения
+      currentTrack: '' // Переменная для хранения текущего трека
     };
   }
 };
-
-
 </script>
 
-
+<style>
+/* Здесь могут быть стили для приложения */
+</style>
